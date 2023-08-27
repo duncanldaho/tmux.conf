@@ -47,7 +47,7 @@ function vpn_connection() {
 
 
 
-function battery_meter() {
+function battery_meter0() {
 
     if [ "$(which acpi)" ]; then
 
@@ -68,7 +68,7 @@ function battery_meter() {
         # Check for existence of a battery.
         if [ -x /sys/class/power_supply/BAT0 ] ; then
 
-            local batt0=$(acpi -b 2> /dev/null | awk '/Battery 0/{print $4}' | cut -d, -f1)
+            local batt0=$(upower -i $(upower -e | grep BAT0) | awk '/percentage/{print $2}')
 
             case $batt0 in
 
@@ -90,7 +90,56 @@ function battery_meter() {
             esac
 
             # Display the percentage of charge the battery has.
-            printf "%s " "${fgcolor}${charging}${batt0}%${fgdefault}"
+            printf "%s " "${fgcolor}${charging}${batt0}${fgdefault}"
+
+        fi
+    fi
+}
+
+function battery_meter1() {
+
+    if [ "$(which acpi)" ]; then
+
+        # Set the default color to the local variable fgdefault.
+        local fgdefault='#[default]'
+
+        if [ "$(cat /sys/class/power_supply/AC/online)" == 1 ] ; then
+
+            local icon='🗲'
+            local charging='+'
+
+        else
+
+            local icon=''
+            local charging='-'
+        fi
+
+        # Check for existence of a battery.
+        if [ -x /sys/class/power_supply/BAT1 ] ; then
+
+            local batt1=$(upower -i $(upower -e | grep BAT1) | awk '/percentage/{print $2}')
+
+            case $batt1 in
+
+                # From 100% to 75% display color grey.
+                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgrey]'
+                    ;;
+
+                # From 74% to 50% display color green.
+                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgreen]'
+                    ;;
+
+                # From 49% to 25% display color yellow.
+                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor='#[fg=brightyellow]'
+                    ;;
+
+                # From 24% to 0% display color red.
+                2[0-4]%|1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
+                    ;;
+            esac
+
+            # Display the percentage of charge the battery has.
+            printf "%s " "${fgcolor}${charging}${batt1}${fgdefault}"
 
         fi
     fi
@@ -111,13 +160,14 @@ function date_time() {
 function main() {
 
     # Comment out any function you do not need.
-    ip_address
-    cpu_temperature
-    vpn_connection
-    battery_meter
-    memory_usage
-    load_average
-    date_time
+    # ip_address
+    # cpu_temperature
+    # vpn_connection
+    # battery_meter0
+    # battery_meter1
+    # memory_usage
+    # load_average
+    # date_time
 
 }
 
