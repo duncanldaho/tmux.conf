@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# Except...
+!.gitignore
+!README.md
+!*.sh
+
+# ...even if they are in subdirectories
+!*/
