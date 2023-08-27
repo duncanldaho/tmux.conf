@@ -71,11 +71,11 @@ function battery_meter0() {
             case $batt0 in
 
                 # From 100% to 75% display color grey.
-                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgrey]'
+                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgreen]'
                     ;;
 
                 # From 74% to 50% display color green.
-                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgreen]'
+                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgrey]'
                     ;;
 
                 # From 49% to 25% display color yellow.
@@ -88,7 +88,7 @@ function battery_meter0() {
             esac
 
             # Display the percentage of charge the battery has.
-            printf "%s " "${fgcolor}${charging}${batt0}${fgdefault}"
+            printf "%s " "${icon} ${fgcolor}${charging}${batt0}${fgdefault}"
 
         fi
     fi
@@ -120,11 +120,11 @@ function battery_meter1() {
             case $batt1 in
 
                 # From 100% to 75% display color grey.
-                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgrey]'
+                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgreen]'
                     ;;
 
                 # From 74% to 50% display color green.
-                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgreen]'
+                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgrey]'
                     ;;
 
                 # From 49% to 25% display color yellow.
