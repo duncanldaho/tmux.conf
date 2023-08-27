@@ -45,8 +45,6 @@ function vpn_connection() {
 
 }
 
-
-
 function battery_meter0() {
 
     if [ "$(which acpi)" ]; then
