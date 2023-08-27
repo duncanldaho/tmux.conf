@@ -1,6 +1,9 @@
 # tmux.conf
 
-A tmux.conf with several status bar options. Available status bar options:
+A tmux.conf with several status bar options. Uncomment the functions at the
+bottom of the left/right scripts to customize the status bar. Available status
+bar options:
+
 - IP address
 - CPU temperature
 - VPN connection
@@ -24,4 +27,3 @@ cp .tmux.conf ~/.tmux.conf
 # Debian/Ubuntu
 sudo apt install acpi
 ```
-4. Uncomment the status options for the left and right scripts.
