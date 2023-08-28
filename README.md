@@ -22,8 +22,3 @@ git clone https://github.com/duncanldaho/tmux.conf && cd tmux.conf
 ```
 cp .tmux.conf ~/.tmux.conf
 ```
-3. Install the acpi package from your upstream package manager.
-```
-# Debian/Ubuntu
-sudo apt install acpi
-```
