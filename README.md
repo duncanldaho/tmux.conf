@@ -1,14 +1,12 @@
 # tmux.conf
 
-A tmux.conf with several status bar options. Uncomment the functions at the
-bottom of the left/right scripts to customize the status bar. Available status
-bar options:
+A tmux.conf with several status bar options. Available status bar options:
 
 - IP address
-- CPU temperature
+- CPU temperature (whole or individual cores)
+- Memory usage
 - VPN connection
 - Battery meters
-- Memory usage
 - Load average
 - Date and time
 
@@ -22,5 +20,4 @@ git clone https://github.com/duncanldaho/tmux.conf && cd tmux.conf
 ```
 cp .tmux.conf ~/.tmux.conf
 ```
-3. Uncomment the functions to fit your needs. All functions are called using the
-'main' function at the bottom of the script.
+3. Uncomment the functions under 'main' to fit your needs.
