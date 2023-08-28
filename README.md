@@ -20,4 +20,5 @@ git clone https://github.com/duncanldaho/tmux.conf && cd tmux.conf
 ```
 cp .tmux.conf ~/.tmux.conf
 ```
-3. Uncomment the functions under 'main' to fit your needs.
+3. Uncomment the functions under 'main' to fit your needs for the left and right
+status scripts.
