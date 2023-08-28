@@ -22,3 +22,5 @@ git clone https://github.com/duncanldaho/tmux.conf && cd tmux.conf
 ```
 cp .tmux.conf ~/.tmux.conf
 ```
+3. Uncomment the functions to fit your needs. All functions are called using the
+'main' function at the bottom of the script.
