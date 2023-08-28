@@ -4,7 +4,9 @@
 # Except...
 !.gitignore
 !README.md
-!*.sh
+!master.sh
+!left_status.sh
+!right_status.sh
 
 # ...even if they are in subdirectories
 !*/

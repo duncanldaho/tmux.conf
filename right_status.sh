@@ -16,7 +16,14 @@ function ip_address() {
 
 }
 
-function cpu_temperature() {
+function cpu_temperature_whole() {
+
+    # Display the temperature of the whole CPU.
+    sensors | awk '/Package id 0/{printf $4" "}'
+
+}
+
+function cpu_temperature_cores() {
 
     # Display the temperature of CPU core 0 and core 1.
     sensors | awk '/Core 0/{printf $3" "}/Core 1/{printf $3" "}'
@@ -25,14 +32,14 @@ function cpu_temperature() {
 
 function memory_usage() {
 
-    if [ "$(which bc)" ]; then
+    if [ "$(which free)" ]; then
 
         # Display used, total, and percentage of memory using the free command.
-        read used total <<< $(free -m | awk '/Mem/{printf $2" "$3}')
-        # Calculate the percentage of memory used with bc.
-        percent=$(bc -l <<< "100 * $total / $used")
+        read total used <<< $(free -m | awk '/Mem/{printf $2" "$3}')
+        # Calculate the percentage of memory used.
+        percent=$((100*$used/$total))
         # Feed the variables into awk and print the values with formating.
-        awk -v u=$used -v t=$total -v p=$percent 'BEGIN {printf "%sMi/%sMi %.1f% ", t, u, p}'
+        awk -v t=$total -v u=$used -v p=$percent 'BEGIN {printf "%sMi/%sMi ~%s%% ", u, t, p}'
 
     fi
 
@@ -47,7 +54,7 @@ function vpn_connection() {
 
 function battery_meter0() {
 
-    if [ "$(which acpi)" ]; then
+    if [ "$(which upower)" ]; then
 
         # Set the default color to the local variable fgdefault.
         local fgdefault='#[default]'
@@ -96,7 +103,7 @@ function battery_meter0() {
 
 function battery_meter1() {
 
-    if [ "$(which acpi)" ]; then
+    if [ "$(which upower)" ]; then
 
         # Set the default color to the local variable fgdefault.
         local fgdefault='#[default]'
@@ -159,11 +166,12 @@ function main() {
 
     # Comment out any function you do not need.
     # ip_address
-    # cpu_temperature
+    # cpu_temperature_whole
+    # cpu_temperature_cores
+    # memory_usage
     # vpn_connection
     battery_meter0
     battery_meter1
-    # memory_usage
     # load_average
     date_time
 
