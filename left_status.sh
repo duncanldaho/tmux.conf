@@ -30,7 +30,7 @@ function cpu_temperature_cores() {
 
 }
 
-function memory_usage() {
+function memory_usage_mebibits() {
 
     if [ "$(which free)" ]; then
 
@@ -39,7 +39,22 @@ function memory_usage() {
         # Calculate the percentage of memory used.
         percent=$((100*$used/$total))
         # Feed the variables into awk and print the values with formating.
-        awk -v t=$total -v u=$used -v p=$percent 'BEGIN {printf "%sMi/%sMi ~%s%% ", u, t, p}'
+        awk -v t=$total -v u=$used 'BEGIN {printf "%sMi/%sMi ", u, t}'
+
+    fi
+
+}
+
+function memory_usage_percent() {
+
+    if [ "$(which free)" ]; then
+
+        # Display used, total, and percentage of memory using the free command.
+        read total used <<< $(free -m | awk '/Mem/{printf $2" "$3}')
+        # Calculate the percentage of memory used.
+        percent=$((100*$used/$total))
+        # Feed the variables into awk and print the values with formating.
+        awk -v p=$percent 'BEGIN {printf "~%s%% ", p}'
 
     fi
 
@@ -168,7 +183,8 @@ function main() {
     ip_address
     cpu_temperature_whole
     # cpu_temperature_cores
-    memory_usage
+    # memory_usage_mebibits
+    memory_usage_percent
     # vpn_connection
     # battery_meter0
     # battery_meter1
