@@ -67,6 +67,38 @@ function vpn_connection() {
 
 }
 
+function energy-rate-batt0() {
+
+    if [ "$(which upower)" ]; then
+
+    # Check for existence of a battery.
+    if [ -x /sys/class/power_supply/BAT0 ] ; then
+
+        local batt0rate=$(upower -i $(upower -e | grep BAT0) | awk '/energy-rate/ {print $2}')
+
+        # Display the energy usage.
+        printf "%s " "${batt0rate:0:4}W"
+
+        fi
+    fi
+}
+
+function energy-rate-batt1() {
+
+    if [ "$(which upower)" ]; then
+
+    # Check for existence of a battery.
+    if [ -x /sys/class/power_supply/BAT1 ] ; then
+
+        local batt1rate=$(upower -i $(upower -e | grep BAT1) | awk '/energy-rate/ {print $2}')
+
+        # Display the energy usage.
+        printf "%s " "${batt1rate:0:4}W"
+
+        fi
+    fi
+}
+
 function battery_meter0() {
 
     if [ "$(which upower)" ]; then
@@ -186,6 +218,8 @@ function main() {
     # memory_usage_mebibits
     memory_usage_percent
     # vpn_connection
+    # energy-rate-batt0
+    # energy-rate-batt1
     # battery_meter0
     # battery_meter1
     # load_average
