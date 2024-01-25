@@ -124,20 +124,20 @@ function battery_meter0() {
 
             case $batt0 in
 
-                # From 100% to 75% display color grey.
-                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgreen]'
+                # From 100% to 80% display color bright green.
+                100%|9[0-9]%|8[0-9]%) fgcolor='#[fg=brightgreen]'
                     ;;
 
-                # From 74% to 50% display color green.
-                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgrey]'
+                # From 79% to 40% display color green.
+                7[0-9]%|6[0-9]%|5[0-9]%|4[0-9]%) fgcolor='#[fg=brightgrey]'
                     ;;
 
-                # From 49% to 25% display color yellow.
-                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor='#[fg=brightyellow]'
+                # From 39% to 20% display color yellow.
+                3[0-9]%|2[0-9]%) fgcolor='#[fg=brightyellow]'
                     ;;
 
-                # From 24% to 0% display color red.
-                2[0-4]%|1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
+                # From 19% to 0% display color red.
+                1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
                     ;;
             esac
 
@@ -173,20 +173,20 @@ function battery_meter1() {
 
             case $batt1 in
 
-                # From 100% to 75% display color grey.
-                100%|9[0-9]%|8[0-9]%|7[5-9]%) fgcolor='#[fg=brightgreen]'
+                # From 100% to 80% display color bright green.
+                100%|9[0-9]%|8[0-9]%) fgcolor='#[fg=brightgreen]'
                     ;;
 
-                # From 74% to 50% display color green.
-                7[0-4]%|6[0-9]%|5[0-9]%) fgcolor='#[fg=brightgrey]'
+                # From 79% to 40% display color green.
+                7[0-9]%|6[0-9]%|5[0-9]%|4[0-9]%) fgcolor='#[fg=brightgrey]'
                     ;;
 
-                # From 49% to 25% display color yellow.
-                4[0-9]%|3[0-9]%|2[5-9]%) fgcolor='#[fg=brightyellow]'
+                # From 39% to 20% display color yellow.
+                3[0-9]%|2[0-9]%) fgcolor='#[fg=brightyellow]'
                     ;;
 
-                # From 24% to 0% display color red.
-                2[0-4]%|1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
+                # From 19% to 0% display color red.
+                1[0-9]%|[0-9]%) fgcolor='#[fg=brightred]'
                     ;;
             esac
 
